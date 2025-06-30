@@ -13,8 +13,8 @@ phases:
     commands:
       - echo Building the Docker image with tag: $IMAGE_TAG
       - docker build -t coworking .
-      - docker tag coworking:latest 831740836162.dkr.ecr.us-east-1.amazonaws.com/coworking:latest
+      - docker tag "coworking:latest 831740836162.dkr.ecr.us-east-1.amazonaws.com/coworking:latest"
   post_build:
     commands:
       - echo Pushing the Docker image...
-      - docker push 831740836162.dkr.ecr.us-east-1.amazonaws.com/coworking:latest
+      - docker push "831740836162.dkr.ecr.us-east-1.amazonaws.com/coworking:latest"
