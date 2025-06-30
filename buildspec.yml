@@ -10,9 +10,9 @@ phases:
       - export IMAGE_TAG=1.1.$CODEBUILD_BUILD_NUMBER
       - echo Building the Docker image with tag [$IMAGE_TAG]
       - docker build -t coworking .
-      - docker tag coworking:latest 831740836162.dkr.ecr.us-east-1.amazonaws.com/coworking:latest
+      - docker tag coworking:latest 831740836162.dkr.ecr.us-east-1.amazonaws.com/coworking:$IMAGE_TAG
   post_build:
     commands:
       - export IMAGE_TAG=1.1.$CODEBUILD_BUILD_NUMBER
       - echo Pushing the Docker image with tag [$IMAGE_TAG]
-      - docker push 831740836162.dkr.ecr.us-east-1.amazonaws.com/coworking:latest
+      - docker push 831740836162.dkr.ecr.us-east-1.amazonaws.com/coworking:$IMAGE_TAG
