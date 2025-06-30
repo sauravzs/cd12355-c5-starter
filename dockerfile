@@ -1,7 +1,7 @@
 FROM python:3.10-slim-buster
 
 # DB_USERNAME, DB_PASSWORD value needs to be passed during run
-# ENV DB_HOST=127.0.0.1
+ENV DB_HOST=127.0.0.1
 ENV DB_PORT=5433
 ENV DB_NAME=mydatabase
 
