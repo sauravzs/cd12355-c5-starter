@@ -1,13 +1,20 @@
 version: 0.2
 
+env:
+  variables:
+    IMAGE_TAG: "1.1.0"
+
 phases:
   pre_build:
     commands:
-      - echo Entered the pre_build phase...
+      - echo Logging into ECR...
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 831740836162.dkr.ecr.us-east-1.amazonaws.com
   build:
     commands:
-      - echo Building at $(date)
-      - echo Hello from CodeBuild!
+      - echo Building the Docker image with tag: $IMAGE_TAG
+      - docker build -t coworking .
+      - docker tag coworking:latest 831740836162.dkr.ecr.us-east-1.amazonaws.com/coworking:latest
   post_build:
     commands:
-      - echo Post-build steps complete.
+      - echo Pushing the Docker image...
+      - docker push 831740836162.dkr.ecr.us-east-1.amazonaws.com/coworking:latest
